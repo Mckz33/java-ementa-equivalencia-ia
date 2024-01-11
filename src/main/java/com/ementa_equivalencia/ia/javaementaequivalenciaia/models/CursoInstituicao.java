@@ -3,11 +3,11 @@ package com.ementa_equivalencia.ia.javaementaequivalenciaia.models;
 import java.io.Serializable;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
@@ -17,18 +17,15 @@ public class CursoInstituicao implements Serializable {
     private static final long SerialVersionUID = 1L;
 
     @Id
-    @Column(name = "curso_instituicao_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long cursoInstituicaoId;
 
-    private String nome;
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinColumn(name = "curso_id")
+    private Curso curso;
 
     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinTable(name = "curso_instituicao_curso", joinColumns = @JoinColumn(name = "cursoInstituicaoId"), inverseJoinColumns = @JoinColumn(name = "cursoId"))
-    private CursoInstituicao cursoInstituicao;
+    @JoinColumn(name = "instituicao_id")
+    private Instituicao instituicao;
 
-    // @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    // @JoinTable(name = "curso_instituicao_curso", joinColumns = @JoinColumn(name =
-    // "cursoInstituicao_id"), inverseJoinColumns = @JoinColumn(name =
-    // "instituicao_id"))
-    // private Instituicao instituicao;
 }

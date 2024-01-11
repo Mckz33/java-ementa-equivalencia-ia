@@ -10,13 +10,13 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Curso implements Serializable {
+public class Instituicao implements Serializable {
     private static final long SerialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long cursoId;
+    private Long instituicaoId;
 
-    private String cursoNome;
+    private String instituicaoNome;
 
 }

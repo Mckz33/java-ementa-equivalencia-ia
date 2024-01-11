@@ -1,22 +1,26 @@
 package com.ementa_equivalencia.ia.javaementaequivalenciaia.models;
 
-import java.io.Serializable;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 
 @Data
 @Entity
-public class Curso implements Serializable {
-    private static final long SerialVersionUID = 1L;
+public class DisciplinaDados {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long cursoId;
+    private Long DisciplinaDadosId;
 
-    private String cursoNome;
+    private String ementa;
+
+    private String conteudo;
+
+    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private Disciplina disciplina;
 
 }
