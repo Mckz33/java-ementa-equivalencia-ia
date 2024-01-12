@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ementa_equivalencia.ia.javaementaequivalenciaia.dtos.requests.CursoInstituicaoRequest;
@@ -39,6 +40,11 @@ public class CursoInstituicaoController {
                                 .map(a -> new ModelMapper().map(a, CursoInstituicaoResponse.class))
                                 .collect(Collectors.toList());
                 return ResponseEntity.status(HttpStatus.OK).body(InstituicaoResponses);
+        }
+
+        @GetMapping("/instituicao/{id}")
+        public ResponseEntity<List<CursoInstituicao>> find(@PathVariable Long id) {
+                return ResponseEntity.status(HttpStatus.OK).body(cursoInstituicaoService.findCursoInstituicaos(id));
         }
 
         @GetMapping("/{id}")
@@ -83,5 +89,19 @@ public class CursoInstituicaoController {
                 CursoInstituicaoResponse instituicaoResponse = new ModelMapper()
                                 .map(cursoInstituicao, CursoInstituicaoResponse.class);
                 return ResponseEntity.status(HttpStatus.OK).body(instituicaoResponse);
+        }
+
+        @PostMapping("/associar")
+        public ResponseEntity<String> associarCursoAInstituicao(
+                        @RequestParam Long cursoId,
+                        @RequestParam Long instituicaoId) {
+
+                try {
+                        cursoInstituicaoService.associarCursoAInstituicao(cursoId, instituicaoId);
+                        return ResponseEntity.ok("Associação realizada com sucesso.");
+                } catch (Exception e) {
+                        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                        .body("Erro ao realizar a associação: " + e.getMessage());
+                }
         }
 }

@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class InstituicaoResponse {
+
     private Long instituicaoId;
+    
     private String instituicaoNome;
 }
