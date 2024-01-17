@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ementa_equivalencia.ia.javaementaequivalenciaia.dtos.requests.DisciplinaDadosRequest;
@@ -87,17 +86,17 @@ public class DisciplinaController {
                 return ResponseEntity.status(HttpStatus.OK).body(instituicaoResponse);
         }
 
-        @PostMapping("/associar")
-        public ResponseEntity<String> associar(
-                        @RequestParam Long disciplinaId,
-                        @RequestParam Long cursoInstituicaoId) {
+        // @PostMapping("/associar")
+        // public ResponseEntity<String> associar(
+        //                 @RequestParam Long disciplinaId,
+        //                 @RequestParam Long cursoInstituicaoId) {
 
-                try {
-                        disciplinaService.associar(disciplinaId, cursoInstituicaoId);
-                        return ResponseEntity.ok("Associação realizada com sucesso.");
-                } catch (Exception e) {
-                        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                        .body("Erro ao realizar a associação: " + e.getMessage());
-                }
-        }
+        //         try {
+        //                 disciplinaService.associar(disciplinaId, cursoInstituicaoId);
+        //                 return ResponseEntity.ok("Associação realizada com sucesso.");
+        //         } catch (Exception e) {
+        //                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+        //                                 .body("Erro ao realizar a associação: " + e.getMessage());
+        //         }
+        // }
 }

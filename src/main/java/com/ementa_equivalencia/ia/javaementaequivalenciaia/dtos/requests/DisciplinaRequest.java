@@ -1,6 +1,6 @@
 package com.ementa_equivalencia.ia.javaementaequivalenciaia.dtos.requests;
 
-import com.ementa_equivalencia.ia.javaementaequivalenciaia.models.CursoInstituicao;
+import com.ementa_equivalencia.ia.javaementaequivalenciaia.models.DisciplinaDados;
 
 import lombok.Data;
 
@@ -11,5 +11,5 @@ public class DisciplinaRequest {
 
     private String disciplinaNome;
 
-    private CursoInstituicao cursoInstituicao;
+    private DisciplinaDados disciplinaDados;
 }
